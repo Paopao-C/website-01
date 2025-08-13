@@ -6,7 +6,7 @@ import styles from './index.module.css';
 export default function NavBar() {
   const [activeMenu, setActiveMenu] = useState<string | null>(null);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
-  const [isScrolled, setIsScrolled] = useState(false); // 新增状态用于判断是否已滚动
+  const [isScrolled, setIsScrolled] = useState(false);
 
   // 弹窗内容数据
   const dropdownContents = {
@@ -62,55 +62,37 @@ export default function NavBar() {
       }
     },
   };
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 0) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
+      setIsScrolled(window.scrollY > 0);
     };
 
     window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   const handleMenuHover = (menuName: string) => {
-    // 清除之前的关闭定时器
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
+
     if (['产品服务', '解决方案', '关于我们'].includes(menuName)) {
       setActiveMenu(menuName);
     } else {
-      // 当悬停在无下拉菜单项上时，立即关闭下拉
       setActiveMenu(null);
     }
   };
 
   const handleMenuLeave = (menuName: string) => {
-    // 设置定时器延迟关闭，给鼠标移动到弹窗的时间
     if (['产品服务', '解决方案', '关于我们'].includes(menuName) && activeMenu === menuName) {
-      timeoutRef.current = setTimeout(() => {
-        setActiveMenu(null);
-      }, 150);
+      timeoutRef.current = setTimeout(() => setActiveMenu(null), 150);
     }
   };
 
   const handleDropdownEnter = () => {
-    // 清除定时器，防止鼠标进入弹窗时关闭菜单   
-    if (timeoutRef.current) {
-      clearTimeout(timeoutRef.current);
-      timeoutRef.current = null;
-    }
+    if (timeoutRef.current) clearTimeout(timeoutRef.current);
   };
 
   const handleDropdownLeave = () => {
-    // 鼠标离开弹窗时关闭菜单
     setActiveMenu(null);
   };
 
@@ -118,10 +100,16 @@ export default function NavBar() {
     <div className={`${styles.navbarContainer} ${isScrolled ? styles.scrolled : ''}`}>
       <div className={styles.navbar}>
         <div className={styles.title}>
-          <Image src='/logo.png' alt='logo' width={50} height={50} />
+          <Image
+            src='/logo.png'
+            alt='logo'
+            width={50}
+            height={50}
+            className={styles.logo}
+          />
           <div className={styles.title_text}>
-            <span style={{ marginLeft: 15, fontSize: 23, color: '#ff7910', fontWeight: 600, textShadow: '2px 2px 4px rgba(233, 178, 60, 0.3)' }}>全通导航</span>
-            <span style={{ marginLeft: 15, fontSize: 9.6, color: '#ff7910', fontWeight: 500, textShadow: '2px 2px 4px rgba(209, 95, 19, 0.3)' }}>QUANTONGDAOHANG</span>
+            <span className={styles.mainTitle}>全通导航</span>
+            <span className={styles.subTitle}>QUANTONGDAOHANG</span>
           </div>
         </div>
         <ul className={styles.menu_list}>
@@ -140,11 +128,16 @@ export default function NavBar() {
           ))}
         </ul>
         <div className={styles.register}>
-          <Image src='/tell.png' alt='logo' width={20} height={20} />
+          <Image
+            src='/tell.png'
+            alt='电话图标'
+            width={20}
+            height={20}
+            className={styles.tellIcon}
+          />
           <span className={styles.tell}>400-067-0887</span>
           <button className={styles.map}>地图演示</button>
         </div>
-
       </div>
 
       {/* 下拉弹窗 */}
@@ -177,7 +170,6 @@ export default function NavBar() {
                 <p className={styles.descContent}>
                   {dropdownContents[activeMenu as keyof typeof dropdownContents]?.description?.content}
                 </p>
-
                 <div className={styles.features}>
                   {dropdownContents[activeMenu as keyof typeof dropdownContents]?.description?.features?.map((feature, idx) => (
                     <div key={idx} className={styles.featureItem}>
@@ -186,7 +178,6 @@ export default function NavBar() {
                     </div>
                   ))}
                 </div>
-
                 <button className={styles.learnMore}>了解更多</button>
               </div>
             </div>

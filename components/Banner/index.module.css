@@ -1,7 +1,7 @@
 .banner {
   position: relative;
-  /* 相对定位 */
   width: 100%;
+  height: 70vh;
   overflow: hidden;
 }
 
@@ -9,5 +9,102 @@
   width: 100%;
   height: 70vh;
   object-fit: cover;
-  /* 确保图片覆盖整个容器 */
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.bannerContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #333;
+  z-index: 1;
+}
+
+.bannerContent h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+}
+
+.bannerContent p {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+}
+
+.bannerButton {
+  width: 8rem;
+  height: 3rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: #ff7910;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  text-align: center;
+}
+
+.bannerButton:hover {
+  background-color: #ffa500;
+}
+
+/* 新增三个方框的样式 */
+.featureBoxes {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: -8rem auto 0;
+  /* 根据需要调整值 */
+}
+
+.featureBox {
+  background: url('../../public/hutb.jpg') no-repeat center center;
+  background-size: cover;
+  background-color: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 1rem;
+  text-align: center;
+  flex: 1;
+  margin: 0 1rem;
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+  position: relative;
+  filter: saturate(70%);
+}
+
+.featureBox::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.6);
+  z-index: -1;
+}
+
+.featureBox h3,
+.featureBox p {
+  position: relative;
+  z-index: 1;
+}
+
+.featureBox:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.featureBox h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.featureBox p {
+  font-size: 0.9rem;
+  color: #666;
 }
