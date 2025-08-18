@@ -26,14 +26,14 @@ const ProductIntroduction = () => {
       icon: "/tu3.png",
       description: "采用GPS定位和蓝牙定位系统，结合调用高德地图数据的自研室外地图，为人员车辆提供室外实时定位导航，填补大型区域没有室外GPS导航的空白。",
       features: ["高德地图底图", "三维楼宇地图", "GPS蓝牙定位", "室外AR导航"],
-      largeImage: "/chengxu3.jpg"
+      largeImage: "/chengxu1.png"
     },
     {
       title: "AR互动营销",
       icon: "/tu4.png",
       description: "运用全通导航自研AR图形引擎，打造AR视觉虚拟互动产品，提供真实场景+虚拟交互服务，实现实景交融数字的新型营销方式。",
       features: ["AR导航", "AR游戏", "AR活动", "AR广告", "AR品牌"],
-      largeImage: "/chengxu3.jpg"
+      largeImage: "/chengxu1.png"
     }
   ];
 

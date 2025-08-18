@@ -10,40 +10,39 @@
   font-weight: 500;
   font-size: 2.4rem;
   color: #333;
-  margin-bottom: 4.925rem;
-  margin-top: 2.9rem;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
   position: relative;
   font-family: 'Source Han Sans', sans-serif;
+  
 }
 
-/* .sectionTitle::after {
-  content: "";
-  display: block;
-  width: min(80%, 12rem);
-  height: 0.25rem;
-  background: #1890ff;
-  margin: 1.25rem auto 0;
-  border-radius: 0.125rem;
-} */
-
-/* 标签栏  */
+/* 标签栏样式 */
 .tabHeader {
   display: flex;
   justify-content: center;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #f0f0f0;
   padding-bottom: 3rem;
+  overflow-x: auto; /* 添加横向滚动条 */
+  white-space: nowrap; /* 防止内容换行 */
+  -webkit-overflow-scrolling: touch; /* 移动端流畅滚动 */
+  scrollbar-width: none; /* 隐藏滚动条（Firefox） */
+}
+/* 隐藏滚动条（Chrome, Safari, Edge） */
+.tabHeader::-webkit-scrollbar {
+  display: none;
 }
 
 .tabItem {
   text-align: center;
-  padding: 0.1rem 9.5rem;
+  padding: 0 2rem;
   cursor: pointer;
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   transition: all 0.3s ease;
+  margin-bottom: 0rem;
 }
 
 .tabItem:hover {
@@ -53,30 +52,37 @@
 .activeTab::after {
   content: "";
   position: absolute;
-  bottom: -1.9rem;
-  left: 6.8rem;
+  bottom: -1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
   width: 50%;
-  height: 0.28rem;
+  height: 0.3rem;
   background: #1890ff;
   border-radius: 0.125rem;
 }
 
 .tabIcon {
-  margin-bottom: 2.1rem;
-  width: 4rem;
-  height: 4rem;
+  margin-bottom: 1rem;
+  width: 18rem;
+  height: 6rem;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
 }
 
+.iconImage {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
 .tabTitle {
   font-size: 1.2rem;
-  width: 8rem;
   font-weight: 600;
   color: #333;
   transition: all 0.3s ease;
+  white-space: nowrap;
 }
 
 .activeTab .tabTitle {
@@ -84,14 +90,20 @@
   font-weight: 700;
 }
 
+/* 内容区域样式 */
 .tabContent {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
+  overflow-x: auto; 
+  white-space: nowrap; 
+  -webkit-overflow-scrolling: touch; 
+  scrollbar-width: none; /* 隐藏滚动条（Firefox） */
 }
 
 .productImage {
   flex: 1;
-  min-width: 20rem;
+  min-width: 40%;
   border-radius: 0.5rem;
   overflow: hidden;
   margin-right: 3rem;
@@ -100,27 +112,26 @@
   justify-content: center;
 }
 
-.productImage img {
+.largeImage {
   width: 100%;
-  height: auto;
-  max-height: 350px;
+  height: 50%;
+  max-height: 400px;
   object-fit: cover;
-  display: block;
   border-radius: 0.5rem;
 }
 
 .productInfo {
   flex: 1;
-  min-width: 20rem;
+  min-width: 40%;
 }
 
 .productTitle {
   font-size: 1.8rem;
   font-weight: 600;
   color: #333;
-  margin-bottom: 1.25rem;
+  margin-bottom: 1.5rem;
   position: relative;
-  padding-left: 1.25rem;
+  padding-left: 1.5rem;
 }
 
 .productTitle::before {
@@ -129,14 +140,15 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  width: 0.375rem;
-  height: 1.25rem;
+  width: 0.5rem;
+  height: 1.5rem;
   background: #1890ff;
-  border-radius: 0.1875rem;
+  border-radius: 0.25rem;
 }
 
 .productDescription {
-  font-size: 1.05rem;
+  
+  font-size: 1.1rem;
   line-height: 1.8;
   color: #555;
   margin-bottom: 2rem;
@@ -147,23 +159,25 @@
   grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
   gap: 1rem;
   margin-bottom: 2rem;
+  
 }
 
 .featureItem {
   background: #f8f9ff;
-  padding: 0.9rem 1.2rem;
+  padding: 1rem;
   border-radius: 0.5rem;
-  border: 1px solid #e6e8f0;
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: 1rem;
   text-align: center;
   cursor: default;
   transition: all 0.3s ease;
+  border: 1px solid #e6e8f0;
 }
 
 .featureItem:hover {
   background: #e6f7ff;
   border-color: #91d5ff;
+  transform: translateY(-3px);
 }
 
 .buttonGroup {
@@ -176,7 +190,7 @@
   background: #1890ff;
   color: white;
   border: none;
-  padding: 0.7rem 2rem;
+  padding: 0.8rem 2.5rem;
   border-radius: 0.5rem;
   font-size: 1rem;
   font-weight: 500;
@@ -189,26 +203,27 @@
   transform: translateY(-2px);
 }
 
+/* 响应式调整 */
+@media (max-width: 1024px) {
+  .tabItem {
+    padding: 0 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .tabContent {
     flex-direction: column;
   }
   
   .productImage {
-    min-width: 100%;
+    width: 100%;
     margin-right: 0;
     margin-bottom: 2rem;
-    height: auto;
-  }
-  
-  .tabHeader {
-    flex-wrap: wrap;
   }
   
   .tabItem {
-    flex: 1 0 calc(25% - 0.5rem);
-    padding: 0 0.5rem;
-    margin-bottom: 1.5rem;
+    padding: 0 1rem;
+    margin-bottom: 2rem;
   }
   
   .featureContainer {
@@ -216,19 +231,15 @@
   }
   
   .tabIcon {
-    width: 3.5rem;
-    height: 3.5rem;
+    width: 5rem;
+    height: 5rem;
   }
 }
 
 @media (max-width: 480px) {
-  .sectionTitle::after {
-    width: 6rem;
-  }
-  
   .tabItem {
     flex: 1 0 50%;
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
   }
   
   .buttonGroup {
@@ -241,7 +252,11 @@
   }
   
   .tabIcon {
-    width: 3rem;
-    height: 3rem;
+    width: 4rem;
+    height: 4rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
   }
 }
