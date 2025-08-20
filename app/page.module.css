@@ -1,5 +1,22 @@
 .main {}
 
 .postList{
+  padding: 0 9rem;
+  
   display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1rem;
+  grid-column-gap: 2rem; /* 列间隔 */
+}
+
+.sectionTitle {
+  text-align: center;
+  font-weight: 500;
+  font-size: 2.4rem;
+  color: #333;
+  margin-bottom: 4rem;
+  margin-top: 4rem;
+  position: relative;
+  font-family: 'Source Han Sans', sans-serif;
+  
 }
