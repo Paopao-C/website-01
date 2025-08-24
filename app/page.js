@@ -4,6 +4,7 @@ import NavBar from "@/components/Navbar";
 import Banner from "@/components/Banner";
 import Product from "@/components/Product";
 import PostItem from "@/components/PostItem";
+import Footer from "@/components/Footer";
 
 const PostList = ({posts}) => { 
   return (
@@ -85,13 +86,14 @@ export default function Home() {
 
   ]
   return (
-
+    <>
     <main className={styles.main}>
       <NavBar />
       <Banner />
       <Product />
       <PostList posts={posts} />
     </main>
-
+    <Footer />
+    </>
   );
 }
